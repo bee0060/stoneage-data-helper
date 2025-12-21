@@ -36,7 +36,125 @@ const attributeTemplate = {
     name: ''
 }
 
-const attributes = []
+const attributes = [
+    // ##装备词条
+    // 腕力加点类
+    { category: 'equipment', name: "腕力加点提高基础攻击" },
+    { category: 'equipment', name: "腕力加点增加攻击" },
+    { category: 'equipment', name: "腕力加点对玩家造成伤害提升" },
+    { category: 'equipment', name: "腕力加点提升暴击率" },
+    { category: 'equipment', name: "腕力加点提升命中率" },
+    { category: 'equipment', name: "角色的腕力加点增加" },
+    { category: 'equipment', name: "腕力加点增加防御" },
+    { category: 'equipment', name: "腕力加点增加生命" },
+    { category: 'equipment', name: "腕力加点对怪物造成伤害提升" },
+    { category: 'equipment', name: "腕力加点增加敏捷" },
+    { category: 'equipment', name: "腕力加点降低敏捷" },
+    { category: 'equipment', name: "腕力加点提高基础防御" },
+    { category: 'equipment', name: "腕力加点提高基础生命" },
+    { category: 'equipment', name: "腕力加点降低受到玩家伤害" },
+    { category: 'equipment', name: "腕力加点降低受到怪物伤害" },
+
+    // 体力加点类
+    { category: 'equipment', name: "体力加点提升治疗效果" },
+    { category: 'equipment', name: "体力加点提高基础生命" },
+    { category: 'equipment', name: "体力加点提升异常抵抗" },
+    { category: 'equipment', name: "体力加点增加防御" },
+    { category: 'equipment', name: "体力加点增加生命" },
+    { category: 'equipment', name: "角色的体力加点增加" },
+    { category: 'equipment', name: "体力加点提高基础攻击" },
+    { category: 'equipment', name: "体力加点增加攻击" },
+    { category: 'equipment', name: "体力加点对玩家造成伤害提升" },
+    { category: 'equipment', name: "体力加点对怪物造成伤害提升" },
+    { category: 'equipment', name: "体力加点增加敏捷" },
+    { category: 'equipment', name: "体力加点提高基础防御" },
+    { category: 'equipment', name: "体力加点降低受到玩家伤害" },
+    { category: 'equipment', name: "体力加点降低受到怪物伤害" },
+    { category: 'equipment', name: "体力加点提升受到治疗效果" },
+
+    // 耐力加点类
+    { category: 'equipment', name: "耐力加点提高基础防御" },
+    { category: 'equipment', name: "耐力加点提升异常抵抗" },
+    { category: 'equipment', name: "耐力加点增加防御" },
+    { category: 'equipment', name: "耐力加点提高基础生命" },
+    { category: 'equipment', name: "角色的耐力加点增加" },
+    { category: 'equipment', name: "耐力加点提高基础攻击" },
+    { category: 'equipment', name: "耐力加点增加攻击" },
+    { category: 'equipment', name: "耐力加点增加生命" },
+    { category: 'equipment', name: "耐力加点对玩家造成伤害提升" },
+    { category: 'equipment', name: "耐力加点对怪物造成伤害提升" },
+    { category: 'equipment', name: "耐力加点增加敏捷" },
+    { category: 'equipment', name: "耐力加点提升反击率" },
+    { category: 'equipment', name: "耐力加点降低受到玩家伤害" },
+    { category: 'equipment', name: "耐力加点降低受到怪物伤害" },
+    { category: 'equipment', name: "耐力加点提升抗暴率" },
+
+    // 速度加点类
+    { category: 'equipment', name: "速度加点增加敏捷" },
+    { category: 'equipment', name: "速度加点提升异常命中" },
+    { category: 'equipment', name: "速度加点降低受到玩家伤害" },
+    { category: 'equipment', name: "速度加点增加生命" },
+    { category: 'equipment', name: "角色的速度加点增加" },
+    { category: 'equipment', name: "速度加点降低受到怪物伤害" },
+    { category: 'equipment', name: "速度加点提升闪避率" },
+    { category: 'equipment', name: "速度加点提高基础攻击" },
+    { category: 'equipment', name: "速度加点增加攻击" },
+    { category: 'equipment', name: "速度加点增加防御" },
+    { category: 'equipment', name: "速度加点对玩家造成伤害提升" },
+    { category: 'equipment', name: "速度加点对怪物造成伤害提升" },
+    { category: 'equipment', name: "速度加点提高基础防御" },
+    { category: 'equipment', name: "速度加点提高基础生命" },
+
+    // 携带宠物类
+    { category: 'equipment', name: "携带宠物的伤害减免提升" },
+    { category: 'equipment', name: "携带宠物的暴击率提升" },
+    { category: 'equipment', name: "携带宠物的暴击伤害提升" },
+    { category: 'equipment', name: "携带宠物的伤害加成提升" },
+    { category: 'equipment', name: "携带宠物的抗暴率提升" },
+
+    // 装备基础属性类
+    { category: 'equipment', name: "装备基础属性提升" },
+
+    // ##宠物装备词条
+    { category: 'petEquipment', name: "宠物防御增加" },
+    { category: 'petEquipment', name: "宠物生命增加" },
+    { category: 'petEquipment', name: "宠物命中率提升" },
+    { category: 'petEquipment', name: "宠物闪避率提升" },
+    { category: 'petEquipment', name: "宠物暴击率提升" },
+    { category: 'petEquipment', name: "宠物抗暴率提升" },
+    { category: 'petEquipment', name: "宠物暴击伤害提升" },
+    { category: 'petEquipment', name: "宠物伤害加成" },
+    { category: 'petEquipment', name: "宠物异常抵抗提升" },
+    { category: 'petEquipment', name: "宠物受到治疗效果提升" },
+    { category: 'petEquipment', name: "宠物风属性伤害减免" },
+    { category: 'petEquipment', name: "宠物伤害减免" },
+    { category: 'petEquipment', name: "宠物伤害增加" },
+    { category: 'petEquipment', name: "宠物攻击增加" },
+    { category: 'petEquipment', name: "宠物基础生命增加" },
+    { category: 'petEquipment', name: "宠物基础攻击增加" },
+    { category: 'petEquipment', name: "宠物基础防御增加" },
+    { category: 'petEquipment', name: "宠物地属性伤害提升" },
+    { category: 'petEquipment', name: "宠物火属性伤害提升" },
+    { category: 'petEquipment', name: "宠物水属性伤害提升" },
+    { category: 'petEquipment', name: "宠物风属性伤害提升" },
+    { category: 'petEquipment', name: "宠物地属性伤害减免" },
+    { category: 'petEquipment', name: "宠物火属性伤害减免" },
+    { category: 'petEquipment', name: "宠物水属性伤害减免" },
+]
+
+// 词条数值范围记录数据格式
+const entryItemTemplate = {
+    category: '',
+    subCategory: '',
+    name: '',
+    quality: 0,
+    min: 0,
+    max: 1,
+    time: new Date().toLocaleString()
+}
+
+// 词条数值范围记录
+const entryItems = []
 
 const initAttributes = () => {
     const cached = localStorage.getItem('attributes')
@@ -118,6 +236,12 @@ function initAttributeSelect(category, selectId) {
         option.textContent = item.name;
         selectElement.appendChild(option);
     });
+}
+
+const getEntryItems = () => {
+    const cachedItems = JSON.parse(localStorage.getItem('entryItems') || '[]');
+    const allItems = entryItems.concat(cachedItems)
+    return allItems
 }
 
 const checkAttribute = (category, name) => attributes.find(item => item.category === category && item.name === name)
@@ -228,7 +352,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const allItems = JSON.parse(localStorage.getItem('entryItems') || '[]');
+        const allItems = getEntryItems()
         const uniqueNames = [...new Set(allItems.map(item => item.name))];
         const filtered = uniqueNames.filter(name => name.toLowerCase().includes(value));
 
@@ -275,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // 加载现有数据
-        let items = JSON.parse(localStorage.getItem('entryItems') || '[]');
+        let items = getEntryItems()
         // 生成唯一标识：词条名称+大品类+品质（确定需要更新的数据集）
         const uniqueKey = `${name}-${category}-${quality}`;
 
@@ -334,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 渲染录入历史（自动过滤旧数据，只显示最新记录）
     function renderEntryHistory() {
-        const items = JSON.parse(localStorage.getItem('entryItems') || '[]');
+        const items = getEntryItems()
         if (items.length === 0) {
             entryHistory.innerHTML = '<div class="p-4 text-gray-500 text-center">暂无录入记录</div>';
             return;
@@ -388,7 +512,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 导出功能：复制到剪贴板
     document.getElementById('exportBtn').addEventListener('click', function () {
-        const items = JSON.parse(localStorage.getItem('entryItems') || '[]');
+        const items = getEntryItems()
         if (items.length === 0) {
             showToast('没有数据可复制');
             return;
@@ -438,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ).map(cb => cb.value);
         const name = searchItemName.value.trim().toLowerCase();
 
-        const items = JSON.parse(localStorage.getItem('entryItems') || '[]');
+        const items = getEntryItems()
         // 去重处理：只保留最新记录
         const uniqueItems = [];
         const seenKeys = new Set();
