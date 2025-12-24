@@ -75,19 +75,11 @@
       </div>
 
       <div>
-        <label class="block text-sm text-gray-600 mb-1">小品类</label>
-        <select id="searchSubCategory" class="input" required>
-          <option value="all">全部</option>
-        </select>
-      </div>
-
-      <div>
         <label class="block text-sm text-gray-600 mb-1">词条名称</label>
         <div class="relative">
           <select id="searchAttribute" class="input mb-1">
             <option value="">先选品类</option>
           </select>
-          <input type="text" id="searchItemName" class="input pr-8" placeholder="输入或选择词条">
           <div id="itemSuggestions"
             class="absolute top-full left-0 right-0 mt-1 bg-white border rounded-md shadow-lg max-h-40 overflow-y-auto scrollbar-thin z-10 hidden">
             <!-- 词条建议将动态生成 -->
@@ -167,19 +159,11 @@
       </div>
 
       <div>
-        <label class="block text-sm text-gray-600 mb-1">小品类（可选）</label>
-        <select id="entrySubCategory" class="input">
-          <option value="">（可选）请选择小品类</option>
-        </select>
-      </div>
-
-      <div>
         <label class="block text-sm text-gray-600 mb-1">词条名称</label>
         <div class="relative">
           <select id="entryAttribute" class="input mb-1">
             <option value="">先选品类</option>
           </select>
-          <input type="text" id="entryItemName" class="input pr-8" placeholder="输入词条名称" required>
           <div id="entryItemSuggestions"
             class="absolute top-full left-0 right-0 mt-1 bg-white border rounded-md shadow-lg max-h-40 overflow-y-auto scrollbar-thin z-10 hidden">
             <!-- 录入词条建议将动态生成 -->
