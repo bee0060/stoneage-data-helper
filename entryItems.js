@@ -4,6 +4,24 @@ const entryItems = [
   {
     "category": "instrument",
     "subCategory": "",
+    "name": "对怪物造成伤害提升",
+    "quality": "orange",
+    "min": 2.49,
+    "max": 3.38,
+    "time": "2025/12/24 23:03:17"
+  },
+  {
+    "category": "instrument",
+    "subCategory": "",
+    "name": "对怪物造成伤害提升",
+    "quality": "red",
+    "min": 3.41,
+    "max": 4.5,
+    "time": "2025/12/24 22:57:01"
+  },
+  {
+    "category": "instrument",
+    "subCategory": "",
     "name": "对玩家造成伤害提升",
     "quality": "orange",
     "min": 2.49,
