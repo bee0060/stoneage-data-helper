@@ -4,6 +4,51 @@ const entryItems = [
   {
     "category": "instrument",
     "subCategory": "",
+    "name": "治疗效果提升",
+    "quality": "orange",
+    "min": 1.66,
+    "max": 2.25,
+    "time": "2025/12/28 00:22:26"
+  },
+  {
+    "category": "instrument",
+    "subCategory": "",
+    "name": "暴击伤害提升",
+    "quality": "orange",
+    "min": 1.66,
+    "max": 2.25,
+    "time": "2025/12/28 00:21:26"
+  },
+  {
+    "category": "instrument",
+    "subCategory": "",
+    "name": "闪避率提升",
+    "quality": "orange",
+    "min": 1.66,
+    "max": 2.25,
+    "time": "2025/12/28 00:19:34"
+  },
+  {
+    "category": "instrument",
+    "subCategory": "",
+    "name": "命中率提升",
+    "quality": "orange",
+    "min": 1.66,
+    "max": 2.25,
+    "time": "2025/12/28 00:19:00"
+  },
+  {
+    "category": "instrument",
+    "subCategory": "",
+    "name": "暴击率提升",
+    "quality": "orange",
+    "min": 1.66,
+    "max": 2.25,
+    "time": "2025/12/28 00:18:53"
+  },
+  {
+    "category": "instrument",
+    "subCategory": "",
     "name": "抗暴率提升",
     "quality": "orange",
     "min": 1.66,
