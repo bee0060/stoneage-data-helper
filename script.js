@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-        const jsonStr = `${JSON.stringify(attributes, null, 2)}\n\n${JSON.stringify(uniqueItems, null, 2)}`;
+        const jsonStr = JSON.stringify(uniqueItems, null, 2);
         navigator.clipboard.writeText(jsonStr).then(() => {
             showToast('最新数据已复制到剪贴板');
         }).catch(err => {
