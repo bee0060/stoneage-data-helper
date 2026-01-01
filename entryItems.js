@@ -2,6 +2,321 @@
 // 词条数值范围记录
 const entryItems = [
   {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点提升异常抵抗",
+    "quality": "orange",
+    "min": 0.97,
+    "max": 1.18,
+    "time": "2026/1/2 01:17:30"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点提升异常抵抗",
+    "quality": "red",
+    "min": 1.23,
+    "max": 1.5,
+    "time": "2026/1/2 01:05:17"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点提高基础生命",
+    "quality": "red",
+    "min": 0.98,
+    "max": 1.2,
+    "time": "2026/1/2 01:03:16"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点提高基础生命",
+    "quality": "orange",
+    "min": 0.79,
+    "max": 0.95,
+    "time": "2026/1/2 01:02:14"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点提升治疗效果",
+    "quality": "orange",
+    "min": 0.52,
+    "max": 0.63,
+    "time": "2026/1/2 01:01:03"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点提升治疗效果",
+    "quality": "red",
+    "min": 0.64,
+    "max": 0.8,
+    "time": "2026/1/2 00:58:42"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点降低受到怪物伤害",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/2 00:57:40"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点降低受到怪物伤害",
+    "quality": "orange",
+    "min": 0.65,
+    "max": 0.79,
+    "time": "2026/1/2 00:57:34"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点降低受到玩家伤害",
+    "quality": "orange",
+    "min": 0.65,
+    "max": 0.79,
+    "time": "2026/1/2 00:57:10"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点降低受到玩家伤害",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/2 00:56:46"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点提高基础生命",
+    "quality": "red",
+    "min": 0.97,
+    "max": 1.2,
+    "time": "2026/1/2 00:56:01"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点提高基础生命",
+    "quality": "orange",
+    "min": 0.77,
+    "max": 0.95,
+    "time": "2026/1/2 00:55:14"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点提高基础防御",
+    "quality": "orange",
+    "min": 0.77,
+    "max": 0.95,
+    "time": "2026/1/2 00:54:03"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点提高基础防御",
+    "quality": "red",
+    "min": 0.97,
+    "max": 1.2,
+    "time": "2026/1/2 00:52:47"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点降低敏捷",
+    "quality": "orange",
+    "min": 3,
+    "max": 3,
+    "time": "2026/1/2 00:50:58"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点降低敏捷",
+    "quality": "red",
+    "min": 4,
+    "max": 4,
+    "time": "2026/1/2 00:50:55"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点增加敏捷",
+    "quality": "red",
+    "min": 4,
+    "max": 4,
+    "time": "2026/1/2 00:50:02"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点增加敏捷",
+    "quality": "orange",
+    "min": 3,
+    "max": 3,
+    "time": "2026/1/2 00:49:30"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点对怪物造成伤害提升",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/2 00:49:13"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点对怪物造成伤害提升",
+    "quality": "orange",
+    "min": 0.64,
+    "max": 0.79,
+    "time": "2026/1/2 00:48:46"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点增加生命",
+    "quality": "orange",
+    "min": 6,
+    "max": 7,
+    "time": "2026/1/2 00:45:55"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点增加生命",
+    "quality": "red",
+    "min": 6,
+    "max": 10,
+    "time": "2026/1/2 00:45:48"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点增加防御",
+    "quality": "orange",
+    "min": 5,
+    "max": 5,
+    "time": "2026/1/2 00:44:06"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点增加防御",
+    "quality": "red",
+    "min": 6,
+    "max": 7,
+    "time": "2026/1/2 00:43:27"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "角色的腕力加点增加",
+    "quality": "orange",
+    "min": 3,
+    "max": 4,
+    "time": "2026/1/2 00:35:30"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "角色的腕力加点增加",
+    "quality": "red",
+    "min": 4,
+    "max": 5,
+    "time": "2026/1/2 00:35:12"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点提升命中率",
+    "quality": "red",
+    "min": 0.64,
+    "max": 0.8,
+    "time": "2026/1/2 00:34:17"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点对玩家造成伤害提升",
+    "quality": "orange",
+    "min": 0.65,
+    "max": 0.79,
+    "time": "2026/1/2 00:21:39"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点对玩家造成伤害提升",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/2 00:18:59"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点增加攻击",
+    "quality": "red",
+    "min": 4,
+    "max": 4,
+    "time": "2026/1/2 00:16:18"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点增加攻击",
+    "quality": "orange",
+    "min": 3,
+    "max": 3,
+    "time": "2026/1/2 00:15:03"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点提高基础攻击",
+    "quality": "orange",
+    "min": 0.77,
+    "max": 0.95,
+    "time": "2026/1/2 00:13:41"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点提高基础攻击",
+    "quality": "red",
+    "min": 0.98,
+    "max": 1.2,
+    "time": "2026/1/2 00:09:41"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点提升暴击率",
+    "quality": "orange",
+    "min": 0.5,
+    "max": 0.62,
+    "time": "2025/12/31 15:58:33"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "腕力加点提升暴击率",
+    "quality": "red",
+    "min": 0.64,
+    "max": 0.8,
+    "time": "2025/12/31 15:57:09"
+  },
+  {
     "category": "instrument",
     "subCategory": "",
     "name": "治疗效果提升",
