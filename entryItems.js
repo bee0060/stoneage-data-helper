@@ -4,6 +4,591 @@ const entryItems = [
   {
     "category": "equipment",
     "subCategory": "",
+    "name": "速度加点降低受到怪物伤害",
+    "quality": "orange",
+    "min": 0.64,
+    "max": 0.79,
+    "time": "2026/1/4 19:38:54"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "速度加点降低受到怪物伤害",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/4 19:38:24"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "速度加点降低受到玩家伤害",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/4 19:38:15"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "速度加点降低受到玩家伤害",
+    "quality": "orange",
+    "min": 0.64,
+    "max": 0.79,
+    "time": "2026/1/4 19:38:09"
+  },
+  {
+    "category": "instrument",
+    "subCategory": "",
+    "name": "受到怪物伤害降低",
+    "quality": "orange",
+    "min": 2.49,
+    "max": 3.38,
+    "time": "2026/1/4 19:18:24"
+  },
+  {
+    "category": "instrument",
+    "subCategory": "",
+    "name": "受到玩家伤害降低",
+    "quality": "orange",
+    "min": 2.49,
+    "max": 3.38,
+    "time": "2026/1/4 19:18:03"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "速度加点提升异常命中",
+    "quality": "red",
+    "min": 1.2,
+    "max": 1.5,
+    "time": "2026/1/4 16:40:05"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "速度加点提升异常命中",
+    "quality": "orange",
+    "min": 0.98,
+    "max": 1.19,
+    "time": "2026/1/4 16:39:37"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "速度加点增加敏捷",
+    "quality": "orange",
+    "min": 3,
+    "max": 3,
+    "time": "2026/1/4 16:37:53"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "速度加点增加敏捷",
+    "quality": "red",
+    "min": 4,
+    "max": 4,
+    "time": "2026/1/4 16:37:49"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点提升抗暴率",
+    "quality": "red",
+    "min": 0.64,
+    "max": 0.8,
+    "time": "2026/1/4 16:37:14"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点提升抗暴率",
+    "quality": "orange",
+    "min": 0.52,
+    "max": 0.63,
+    "time": "2026/1/4 16:36:30"
+  },
+  {
+    "category": "instrument",
+    "subCategory": "",
+    "name": "伤害减免提升",
+    "quality": "orange",
+    "min": 1.66,
+    "max": 2.25,
+    "time": "2026/1/4 16:34:26"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点降低受到怪物伤害",
+    "quality": "orange",
+    "min": 0.64,
+    "max": 0.79,
+    "time": "2026/1/4 13:22:10"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点降低受到怪物伤害",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/4 13:22:01"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点降低受到玩家伤害",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/4 13:21:56"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点降低受到玩家伤害",
+    "quality": "orange",
+    "min": 0.64,
+    "max": 0.79,
+    "time": "2026/1/4 13:20:55"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点提升反击率",
+    "quality": "orange",
+    "min": 0.52,
+    "max": 0.63,
+    "time": "2026/1/4 13:20:16"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点提升反击率",
+    "quality": "red",
+    "min": 0.64,
+    "max": 0.8,
+    "time": "2026/1/4 13:18:39"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点增加敏捷",
+    "quality": "red",
+    "min": 4,
+    "max": 4,
+    "time": "2026/1/4 13:17:43"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点增加敏捷",
+    "quality": "orange",
+    "min": 3,
+    "max": 3,
+    "time": "2026/1/4 13:17:12"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点对怪物造成伤害提升",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/4 13:16:28"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点对怪物造成伤害提升",
+    "quality": "orange",
+    "min": 0.65,
+    "max": 0.79,
+    "time": "2026/1/4 13:16:19"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点对玩家造成伤害提升",
+    "quality": "orange",
+    "min": 0.65,
+    "max": 0.79,
+    "time": "2026/1/4 13:16:13"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点对玩家造成伤害提升",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/4 13:15:44"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点增加生命",
+    "quality": "red",
+    "min": 8,
+    "max": 10,
+    "time": "2026/1/4 13:14:50"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点增加生命",
+    "quality": "orange",
+    "min": 6,
+    "max": 7,
+    "time": "2026/1/4 13:14:30"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点增加攻击",
+    "quality": "orange",
+    "min": 3,
+    "max": 3,
+    "time": "2026/1/4 13:14:01"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点增加攻击",
+    "quality": "red",
+    "min": 4,
+    "max": 4,
+    "time": "2026/1/4 13:13:44"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点提高基础攻击",
+    "quality": "orange",
+    "min": 0.77,
+    "max": 0.95,
+    "time": "2026/1/4 13:12:54"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点提高基础攻击",
+    "quality": "red",
+    "min": 0.98,
+    "max": 1.2,
+    "time": "2026/1/4 13:01:53"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "角色的耐力加点增加",
+    "quality": "red",
+    "min": 4,
+    "max": 5,
+    "time": "2026/1/4 12:46:23"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "角色的耐力加点增加",
+    "quality": "orange",
+    "min": 3,
+    "max": 3,
+    "time": "2026/1/4 12:45:39"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点提高基础生命",
+    "quality": "orange",
+    "min": 0.77,
+    "max": 0.95,
+    "time": "2026/1/4 12:45:15"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点提高基础生命",
+    "quality": "red",
+    "min": 0.96,
+    "max": 1.2,
+    "time": "2026/1/4 12:44:14"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点增加防御",
+    "quality": "orange",
+    "min": 5,
+    "max": 5,
+    "time": "2026/1/4 08:39:29"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点增加防御",
+    "quality": "red",
+    "min": 6,
+    "max": 7,
+    "time": "2026/1/4 08:38:54"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点提升异常抵抗",
+    "quality": "red",
+    "min": 1.2,
+    "max": 1.5,
+    "time": "2026/1/4 08:38:37"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点提升异常抵抗",
+    "quality": "orange",
+    "min": 0.97,
+    "max": 1.19,
+    "time": "2026/1/4 08:37:46"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点提高基础防御",
+    "quality": "orange",
+    "min": 0.77,
+    "max": 0.95,
+    "time": "2026/1/4 08:35:58"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "耐力加点提高基础防御",
+    "quality": "red",
+    "min": 0.96,
+    "max": 1.2,
+    "time": "2026/1/4 08:34:59"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点提升受到治疗效果",
+    "quality": "red",
+    "min": 0.65,
+    "max": 0.79,
+    "time": "2026/1/4 08:31:49"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点提升受到治疗效果",
+    "quality": "orange",
+    "min": 0.52,
+    "max": 0.63,
+    "time": "2026/1/4 08:30:37"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点降低受到怪物伤害",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/4 08:28:52"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点降低受到怪物伤害",
+    "quality": "orange",
+    "min": 0.65,
+    "max": 0.79,
+    "time": "2026/1/4 08:28:41"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点降低受到玩家伤害",
+    "quality": "orange",
+    "min": 0.65,
+    "max": 0.79,
+    "time": "2026/1/4 08:28:29"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点降低受到玩家伤害",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/4 08:27:44"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点提高基础防御",
+    "quality": "red",
+    "min": 1,
+    "max": 1.2,
+    "time": "2026/1/4 08:27:08"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点提高基础防御",
+    "quality": "orange",
+    "min": 0.77,
+    "max": 0.95,
+    "time": "2026/1/4 08:26:38"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点增加敏捷",
+    "quality": "orange",
+    "min": 3,
+    "max": 3,
+    "time": "2026/1/4 08:25:31"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点增加敏捷",
+    "quality": "red",
+    "min": 4,
+    "max": 4,
+    "time": "2026/1/4 08:25:08"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点对怪物造成伤害提升",
+    "quality": "orange",
+    "min": 0.64,
+    "max": 0.77,
+    "time": "2026/1/4 08:24:38"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点对怪物造成伤害提升",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/4 08:24:28"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点对玩家造成伤害提升",
+    "quality": "red",
+    "min": 0.8,
+    "max": 1,
+    "time": "2026/1/4 08:23:55"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点对玩家造成伤害提升",
+    "quality": "orange",
+    "min": 0.64,
+    "max": 0.77,
+    "time": "2026/1/4 08:23:16"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点增加攻击",
+    "quality": "orange",
+    "min": 3,
+    "max": 3,
+    "time": "2026/1/4 08:21:53"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点增加攻击",
+    "quality": "red",
+    "min": 4,
+    "max": 4,
+    "time": "2026/1/4 08:21:27"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点提高基础攻击",
+    "quality": "red",
+    "min": 1.01,
+    "max": 1.08,
+    "time": "2026/1/4 08:21:02"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点提高基础攻击",
+    "quality": "orange",
+    "min": 0.77,
+    "max": 0.95,
+    "time": "2026/1/4 08:20:08"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "角色的体力加点增加",
+    "quality": "orange",
+    "min": 3,
+    "max": 3,
+    "time": "2026/1/4 08:18:51"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "角色的体力加点增加",
+    "quality": "red",
+    "min": 4,
+    "max": 5,
+    "time": "2026/1/4 08:18:15"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点增加生命",
+    "quality": "red",
+    "min": 8,
+    "max": 10,
+    "time": "2026/1/4 08:17:49"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点增加生命",
+    "quality": "orange",
+    "min": 6,
+    "max": 7,
+    "time": "2026/1/4 08:17:09"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点增加防御",
+    "quality": "orange",
+    "min": 5,
+    "max": 5,
+    "time": "2026/1/4 08:16:47"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
+    "name": "体力加点增加防御",
+    "quality": "red",
+    "min": 6,
+    "max": 7,
+    "time": "2026/1/4 08:16:07"
+  },
+  {
+    "category": "equipment",
+    "subCategory": "",
     "name": "体力加点提升异常抵抗",
     "quality": "orange",
     "min": 0.97,
