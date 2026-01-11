@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JPJ376C9YF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JPJ376C9YF');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>金贝换算器</title>
@@ -30,6 +40,7 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-100 min-h-screen py-8 px-4">
     <div class="max-w-md mx-auto bg-white rounded-xl p-6 card-shadow relative">
         <a href="index.html" class="absolute top-9 left-4 text-gray-600 hover:text-neutral transition-colors">
@@ -49,8 +60,8 @@
                 </label>
                 <div class="relative">
                     <input type="number" id="goldInput" placeholder="输入金贝数量" min="0" step="1"
-                           class="w-full border border-gray-300 rounded-md px-3 py-2 input-focus"
-                           oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value === '') this.value = ''">
+                        class="w-full border border-gray-300 rounded-md px-3 py-2 input-focus"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value === '') this.value = ''">
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">贝</span>
                 </div>
             </div>
@@ -60,21 +71,19 @@
                     转换比例（1R = ? 金贝）
                 </label>
                 <input type="number" id="rateInput" value="150" min="1" step="1"
-                       class="w-full border border-gray-300 rounded-md px-3 py-2 input-focus"
-                       oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value === '' || this.value < 1) this.value = 1">
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 input-focus"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value === '' || this.value < 1) this.value = 1">
             </div>
 
             <div class="space-y-2">
                 <label class="block text-sm font-medium text-gray-700">类型</label>
                 <div class="flex gap-4">
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="convertType" value="cash" checked 
-                               class="text-primary input-focus">
+                        <input type="radio" name="convertType" value="cash" checked class="text-primary input-focus">
                         <span>现金金贝（无手续费）</span>
                     </label>
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="convertType" value="item" 
-                               class="text-primary input-focus">
+                        <input type="radio" name="convertType" value="item" class="text-primary input-focus">
                         <span>物品价值（含15%手续费）</span>
                     </label>
                 </div>
@@ -108,8 +117,8 @@
                 </label>
                 <div class="relative">
                     <input type="number" id="goldInputB" placeholder="输入对比的金贝数量" min="0" step="1"
-                           class="w-full border border-gray-300 rounded-md px-3 py-2 input-focus"
-                           oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value === '') this.value = ''">
+                        class="w-full border border-gray-300 rounded-md px-3 py-2 input-focus"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value === '') this.value = ''">
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">贝</span>
                 </div>
             </div>
@@ -160,7 +169,7 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // 元素获取
             const goldInputA = document.getElementById('goldInput');
             const goldInputB = document.getElementById('goldInputB');
@@ -229,10 +238,10 @@
                 if (goldA === 0 && goldB === 0) {
                     summaryText.textContent = '请输入两个金贝数量查看对比结果';
                 } else {
-                    const diffDesc = goldDiffValue >= 0 
+                    const diffDesc = goldDiffValue >= 0
                         ? `A比B多${Math.abs(goldDiffValue)}贝（折合${Math.abs(rmbDiffValue).toFixed(2)}R）`
                         : `B比A多${Math.abs(goldDiffValue)}贝（折合${Math.abs(rmbDiffValue).toFixed(2)}R）`;
-                    
+
                     summaryText.textContent = `金贝差额${goldDiffValue}贝，R差额${rmbDiffValue.toFixed(2)}R。${diffDesc}${isItem ? '（已扣15%手续费）' : ''}`;
                 }
             }
@@ -247,4 +256,5 @@
         });
     </script>
 </body>
+
 </html>
