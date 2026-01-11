@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,6 +28,7 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-100 min-h-screen flex flex-col">
     <!-- 顶部导航 -->
     <header class="bg-neutral text-white py-4 shadow-md">
@@ -46,38 +48,63 @@
                 <!-- 金贝价值换算工具 -->
                 <a href="exchange.html" class="block">
                     <div class="bg-white rounded-xl p-6 shadow card-hover border-t-4 border-primary">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                                <i class="fa fa-exchange text-xl"></i>
+                        <div class="flex items-center mb-4 jcb">
+                            <div class="left flex items-center">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                    <i class="fa fa-exchange text-xl"></i>
+                                </div>
+                                <h2 class="text-xl font-bold text-neutral ml-4">金贝价值换算</h2>
                             </div>
-                            <h2 class="text-xl font-bold text-neutral ml-4">金贝价值换算</h2>
+                            <div class="right ml-auto text-secondary">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
                         </div>
                         <p class="text-gray-600">
                             金贝与R价值换算工具，支持手续费计算与数量对比分析，包含风险价值评估。
                         </p>
-                        <div class="mt-4 text-primary font-medium flex items-center">
-                            <span>进入工具</span>
-                            <i class="fa fa-arrow-right ml-2"></i>
-                        </div>
                     </div>
                 </a>
 
                 <!-- 词条查询工具 -->
                 <a href="attributes.html" class="block">
                     <div class="bg-white rounded-xl p-6 shadow card-hover border-t-4 border-secondary">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
-                                <i class="fa fa-search text-xl"></i>
+                        <div class="flex items-center mb-4 jcb">
+                            <div class="left flex items-center">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+                                    <i class="fa fa-search text-xl"></i>
+                                </div>
+                                <h2 class="text-xl font-bold text-neutral ml-4">词条查询</h2>
                             </div>
-                            <h2 class="text-xl font-bold text-neutral ml-4">词条查询</h2>
+                            <div class="right ml-auto text-secondary">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
                         </div>
                         <p class="text-gray-600">
                             游戏内各类词条属性查询工具
                         </p>
-                        <div class="mt-4 text-secondary font-medium flex items-center">
-                            <span>进入工具</span>
-                            <i class="fa fa-arrow-right ml-2"></i>
+                    </div>
+                </a>
+
+                <!-- 宠物彩线计算工具（Pet Color Line） -->
+                <a href="petColorLine.html" class="block">
+                    <div class="bg-white rounded-xl p-6 shadow card-hover border-t-4 border-primary">
+                        <div class="flex items-center mb-4 jcb">
+                            <div class="left flex items-center">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                    <i class="fa fa-exchange text-xl"></i>
+                                </div>
+                                <h2 class="text-xl font-bold text-neutral ml-4">宠物彩线计算</h2>
+                            </div>
+                            <div class="right ml-auto text-secondary">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
                         </div>
+                        <p class="text-gray-600">
+                            计算宠物彩线成长率，支持三级天赋技能值输入
+                        </p>
                     </div>
                 </a>
             </div>
@@ -96,4 +123,5 @@
         </div>
     </footer>
 </body>
+
 </html>

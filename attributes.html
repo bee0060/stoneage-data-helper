@@ -49,9 +49,15 @@
 </head>
 
 <body class="bg-gray-100 min-h-screen p-4 pb-20">
-  <!-- 标签切换区 -->
-  <div class="bg-white rounded-t-lg shadow-sm border-b">
-    <div class="flex">
+  <!-- 带返回按钮的标题栏 -->
+  <div class="bg-white rounded-t-lg shadow-sm border-b relative">
+    <a href="index.html"
+      class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-primary transition-colors">
+      <i class="fa fa-arrow-left mr-1"></i> 返回
+    </a>
+
+    <!-- 标签切换区 -->
+    <div class="flex justify-center">
       <button id="queryTab" class="tab-active px-6 py-3 focus:outline-none">
         <i class="fa fa-search mr-2"></i>查询
       </button>
