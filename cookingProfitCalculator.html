@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>石器时代料理利润换算工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E67E22',
+                        secondary: '#3498DB',
+                        accent: '#9B59B6',
+                        neutral: '#2C3E50',
+                        stone: '#D4A76A',
+                        success: '#10B981',
+                        warning: '#F59E0B',
+                        danger: '#EF4444',
+                        'danger-dark': '#DC2626'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-shadow {
+                @apply shadow-md hover:shadow-lg transition-all duration-300;
+            }
+            .input-focus {
+                @apply focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none;
+            }
+            .result-item {
+                @apply flex justify-between py-2 border-b border-gray-100 last:border-0;
+            }
+            .highlight-box {
+                @apply py-3 px-4 rounded-lg text-center font-medium transition-all duration-300;
+            }
+        }
+    </style>
+</head>
+<body class="bg-amber-50 min-h-screen py-8 px-4">
+    <div class="max-w-md mx-auto">
+        <!-- 标题区 -->
+        <div class="text-center mb-8">
+            <a href="index.html" class="inline-block mb-4 text-neutral hover:text-primary transition-colors">
+                <i class="fa fa-arrow-left mr-1"></i> 返回工具目录
+            </a>
+            <h1 class="text-2xl md:text-3xl font-bold text-stone flex items-center justify-center">
+                <i class="fa fa-utensils text-accent mr-2 animate-pulse"></i>
+                料理利润换算工具
+            </h1>
+            <p class="text-gray-500 mt-2">计算料理制作的成本与利润</p>
+        </div>
+
+        <!-- 输入区域 -->
+        <div class="bg-white rounded-xl p-6 mb-6 card-shadow border border-stone/20">
+            <h2 class="font-semibold text-neutral mb-4 flex items-center">
+                <i class="fa fa-calculator text-stone mr-2"></i>参数设置
+            </h2>
+            
+            <div class="space-y-4">
+                <div>
+                    <label for="costX" class="block text-sm text-gray-600 mb-1">食材成本 (X)</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">石币</span>
+                        <input type="number" id="costX" min="0" 
+                               class="w-full pl-14 pr-3 py-2 border border-gray-300 rounded-md input-focus"
+                               placeholder="输入单份食材成本">
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="priceY" class="block text-sm text-gray-600 mb-1">紫色成品价格 (Y)</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">石币</span>
+                        <input type="number" id="priceY" min="0" 
+                               class="w-full pl-14 pr-3 py-2 border border-gray-300 rounded-md input-focus"
+                               placeholder="输入紫色成品售价">
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="priceZ" class="block text-sm text-gray-600 mb-1">橙色成品价格 (Z)</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">石币</span>
+                        <input type="number" id="priceZ" min="0" 
+                               class="w-full pl-14 pr-3 py-2 border border-gray-300 rounded-md input-focus"
+                               placeholder="输入橙色成品售价">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 计算结果区 -->
+        <div class="bg-white rounded-xl p-6 mb-6 card-shadow border border-stone/20">
+            <h2 class="font-semibold text-neutral mb-4 flex items-center">
+                <i class="fa fa-chart-pie text-stone mr-2"></i>计算结果
+            </h2>
+            
+            <div id="resultContainer" class="opacity-50 pointer-events-none">
+                <div class="space-y-1 mb-6">
+                    <div class="result-item">
+                        <span class="text-gray-600">总成本 (T)</span>
+                        <span id="totalCost" class="font-medium">-- 石币</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="text-gray-600">紫色成品收入 (P)</span>
+                        <span id="purpleIncome" class="font-medium">-- 石币</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="text-gray-600">橙色成品收入 (O)</span>
+                        <span id="orangeIncome" class="font-medium">-- 石币</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="text-gray-600">实际收入 (G)</span>
+                        <span id="actualIncome" class="font-medium">-- 石币</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="text-gray-600">收入成本比 (R)</span>
+                        <span id="ratioR" class="font-medium">--</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="text-gray-600">利润率 (P)</span>
+                        <span id="profitRate" class="font-medium">--</span>
+                    </div>
+                </div>
+                
+                <!-- 提示信息 -->
+                <div id="suggestionBox" class="highlight-box hidden">
+                    <span id="suggestionText"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 制作说明 -->
+        <div class="bg-white/70 rounded-xl p-5 text-sm text-gray-600">
+            <h3 class="font-medium text-neutral mb-2 flex items-center">
+                <i class="fa fa-info-circle text-stone mr-1"></i> 计算说明
+            </h3>
+            <ul class="space-y-1 list-disc pl-5">
+                <li>基于100份食材计算，制作成功率72%（失败28份）</li>
+                <li>成功的72份中，包含67份紫色成品和5份橙色成品</li>
+                <li>实际收入为总售价的85%（扣除市场手续费）</li>
+                <li>利润率 = (实际收入 / 总成本 - 1) × 100%</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const costX = document.getElementById('costX');
+        const priceY = document.getElementById('priceY');
+        const priceZ = document.getElementById('priceZ');
+        const resultContainer = document.getElementById('resultContainer');
+        
+        // 结果元素
+        const totalCostEl = document.getElementById('totalCost');
+        const purpleIncomeEl = document.getElementById('purpleIncome');
+        const orangeIncomeEl = document.getElementById('orangeIncome');
+        const actualIncomeEl = document.getElementById('actualIncome');
+        const ratioREl = document.getElementById('ratioR');
+        const profitRateEl = document.getElementById('profitRate');
+        const suggestionBox = document.getElementById('suggestionBox');
+        const suggestionText = document.getElementById('suggestionText');
+
+        // 计算函数
+        function calculateProfit() {
+            // 获取输入值
+            const X = parseFloat(costX.value) || 0;
+            const Y = parseFloat(priceY.value) || 0;
+            const Z = parseFloat(priceZ.value) || 0;
+            
+            // 验证输入
+            if (X <= 0 || Y <= 0 || Z <= 0) {
+                resultContainer.classList.add('opacity-50', 'pointer-events-none');
+                return;
+            }
+            
+            // 启用结果区域
+            resultContainer.classList.remove('opacity-50', 'pointer-events-none');
+            
+            // 计算各项数值
+            const T = X * 100; // 总成本
+            const P = 67 * Y;  // 紫色成品收入
+            const O = 5 * Z;   // 橙色成品收入
+            const G = (P + O) * 0.85; // 实际收入（扣除手续费）
+            const R = G / T;   // 收入成本比
+            const profitRate = (R - 1) * 100; // 利润率（百分比）
+            
+            // 更新UI显示
+            totalCostEl.textContent = T.toFixed(0) + ' 石币';
+            purpleIncomeEl.textContent = P.toFixed(0) + ' 石币';
+            orangeIncomeEl.textContent = O.toFixed(0) + ' 石币';
+            actualIncomeEl.textContent = G.toFixed(0) + ' 石币';
+            ratioREl.textContent = R.toFixed(2);
+            profitRateEl.textContent = profitRate.toFixed(1) + '%';
+            
+            // 显示建议
+            suggestionBox.classList.remove('hidden');
+            if (profitRate > 50) {
+                suggestionBox.className = 'highlight-box bg-danger-dark/10 text-danger-dark border border-danger-dark/30';
+                suggestionText.textContent = '投资非常非常值得！利润率超高！';
+            } else if (profitRate > 35) {
+                suggestionBox.className = 'highlight-box bg-danger/10 text-danger border border-danger/30';
+                suggestionText.textContent = '投资非常值得，建议立即制作！';
+            } else if (profitRate > 15) {
+                suggestionBox.className = 'highlight-box bg-warning/10 text-warning border border-warning/30';
+                suggestionText.textContent = '投资值得，可以制作';
+            } else if (profitRate >= 0) {
+                suggestionBox.className = 'highlight-box bg-success/10 text-success border border-success/30';
+                suggestionText.textContent = '有微薄利润，可以考虑制作';
+            } else {
+                suggestionBox.className = 'highlight-box bg-gray-100 text-gray-600 border border-gray-200';
+                suggestionText.textContent = '亏损状态，不建议制作';
+            }
+        }
+
+        // 绑定输入事件，实时计算
+        costX.addEventListener('input', calculateProfit);
+        priceY.addEventListener('input', calculateProfit);
+        priceZ.addEventListener('input', calculateProfit);
+    </script>
+</body>
+</html>
