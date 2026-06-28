@@ -67,7 +67,7 @@
                     <label for="costX" class="block text-sm text-gray-600 mb-1">食材成本 (X)</label>
                     <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">石币</span>
-                        <input type="number" id="costX" min="0" 
+                        <input type="number" id="costX" min="0" step="1"
                                class="w-full pl-14 pr-3 py-2 border border-gray-300 rounded-md input-focus"
                                placeholder="输入单份食材成本">
                     </div>
@@ -77,19 +77,39 @@
                     <label for="priceY" class="block text-sm text-gray-600 mb-1">紫色成品价格 (Y)</label>
                     <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">石币</span>
-                        <input type="number" id="priceY" min="0" 
+                        <input type="number" id="priceY" min="0" step="1"
                                class="w-full pl-14 pr-3 py-2 border border-gray-300 rounded-md input-focus"
                                placeholder="输入紫色成品售价">
                     </div>
                 </div>
                 
                 <div>
-                    <label for="priceZ" class="block text-sm text-gray-600 mb-1">橙色成品价格 (Z)</label>
+                    <label for="priceZ" class="block text-sm text-gray-600 mb-1">金色成品价格 (Z)</label>
                     <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">石币</span>
-                        <input type="number" id="priceZ" min="0" 
+                        <input type="number" id="priceZ" min="0" step="1"
                                class="w-full pl-14 pr-3 py-2 border border-gray-300 rounded-md input-focus"
-                               placeholder="输入橙色成品售价">
+                               placeholder="输入金色成品售价">
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="successRate" class="block text-sm text-gray-600 mb-1">成功率 (%)</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
+                        <input type="number" id="successRate" min="1" max="100" value="72" step="1"
+                               class="w-full pl-14 pr-3 py-2 border border-gray-300 rounded-md input-focus"
+                               placeholder="输入制作成功率">
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="goldCount" class="block text-sm text-gray-600 mb-1">金色成品数量</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">个</span>
+                        <input type="number" id="goldCount" min="0" max="100" value="5" step="1"
+                               class="w-full pl-14 pr-3 py-2 border border-gray-300 rounded-md input-focus"
+                               placeholder="输入金色成品数量">
                     </div>
                 </div>
             </div>
@@ -108,12 +128,24 @@
                         <span id="totalCost" class="font-medium">-- 石币</span>
                     </div>
                     <div class="result-item">
+                        <span class="text-gray-600">成功数量</span>
+                        <span id="successCount" class="font-medium">-- 个</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="text-gray-600">紫色成品数量</span>
+                        <span id="purpleCount" class="font-medium">-- 个</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="text-gray-600">金色成品数量</span>
+                        <span id="goldCountDisplay" class="font-medium">-- 个</span>
+                    </div>
+                    <div class="result-item">
                         <span class="text-gray-600">紫色成品收入 (P)</span>
                         <span id="purpleIncome" class="font-medium">-- 石币</span>
                     </div>
                     <div class="result-item">
-                        <span class="text-gray-600">橙色成品收入 (O)</span>
-                        <span id="orangeIncome" class="font-medium">-- 石币</span>
+                        <span class="text-gray-600">金色成品收入 (O)</span>
+                        <span id="goldIncome" class="font-medium">-- 石币</span>
                     </div>
                     <div class="result-item">
                         <span class="text-gray-600">实际收入 (G)</span>
@@ -142,8 +174,8 @@
                 <i class="fa fa-info-circle text-stone mr-1"></i> 计算说明
             </h3>
             <ul class="space-y-1 list-disc pl-5">
-                <li>基于100份食材计算，制作成功率72%（失败28份）</li>
-                <li>成功的72份中，包含67份紫色成品和5份橙色成品</li>
+                <li>基于100份食材计算，成功率和金色成品数量可自定义</li>
+                <li>紫色成品数量 = 成功总数 - 金色成品数量（最低为0）</li>
                 <li>实际收入为总售价的85%（扣除市场手续费）</li>
                 <li>利润率 = (实际收入 / 总成本 - 1) × 100%</li>
             </ul>
@@ -155,12 +187,17 @@
         const costX = document.getElementById('costX');
         const priceY = document.getElementById('priceY');
         const priceZ = document.getElementById('priceZ');
+        const successRate = document.getElementById('successRate');
+        const goldCountInput = document.getElementById('goldCount');
         const resultContainer = document.getElementById('resultContainer');
         
         // 结果元素
         const totalCostEl = document.getElementById('totalCost');
+        const successCountEl = document.getElementById('successCount');
+        const purpleCountEl = document.getElementById('purpleCount');
+        const goldCountEl = document.getElementById('goldCountDisplay');
         const purpleIncomeEl = document.getElementById('purpleIncome');
-        const orangeIncomeEl = document.getElementById('orangeIncome');
+        const goldIncomeEl = document.getElementById('goldIncome');
         const actualIncomeEl = document.getElementById('actualIncome');
         const ratioREl = document.getElementById('ratioR');
         const profitRateEl = document.getElementById('profitRate');
@@ -173,9 +210,13 @@
             const X = parseFloat(costX.value) || 0;
             const Y = parseFloat(priceY.value) || 0;
             const Z = parseFloat(priceZ.value) || 0;
+            const successPercent = parseFloat(successRate.value) || 0;
+            const goldCount = parseInt(goldCountInput.value) || 0;
             
             // 验证输入
-            if (X <= 0 || Y <= 0 || Z <= 0) {
+            if (X <= 0 || Y <= 0 || Z <= 0 || 
+                successPercent <= 0 || successPercent > 100 || 
+                goldCount < 0 || goldCount > 100) {
                 resultContainer.classList.add('opacity-50', 'pointer-events-none');
                 return;
             }
@@ -185,16 +226,22 @@
             
             // 计算各项数值
             const T = X * 100; // 总成本
-            const P = 67 * Y;  // 紫色成品收入
-            const O = 5 * Z;   // 橙色成品收入
-            const G = (P + O) * 0.85; // 实际收入（扣除手续费）
-            const R = G / T;   // 收入成本比
+            const successTotal = Math.round((successPercent / 100) * 100); // 成功总数（四舍五入）
+            const purpleCount = Math.max(0, successTotal - goldCount); // 紫色成品数量（不能为负）
+            
+            const P = purpleCount * Y;  // 紫色成品收入
+            const O = goldCount * Z;    // 金色成品收入
+            const G = (P + O) * 0.85;   // 实际收入（扣除手续费）
+            const R = G / T;            // 收入成本比
             const profitRate = (R - 1) * 100; // 利润率（百分比）
             
             // 更新UI显示
             totalCostEl.textContent = T.toFixed(0) + ' 石币';
+            successCountEl.textContent = successTotal + ' 个';
+            purpleCountEl.textContent = purpleCount + ' 个';
+            goldCountEl.textContent = goldCount + ' 个';
             purpleIncomeEl.textContent = P.toFixed(0) + ' 石币';
-            orangeIncomeEl.textContent = O.toFixed(0) + ' 石币';
+            goldIncomeEl.textContent = O.toFixed(0) + ' 石币';
             actualIncomeEl.textContent = G.toFixed(0) + ' 石币';
             ratioREl.textContent = R.toFixed(2);
             profitRateEl.textContent = profitRate.toFixed(1) + '%';
@@ -223,6 +270,8 @@
         costX.addEventListener('input', calculateProfit);
         priceY.addEventListener('input', calculateProfit);
         priceZ.addEventListener('input', calculateProfit);
+        successRate.addEventListener('input', calculateProfit);
+        goldCountInput.addEventListener('input', calculateProfit);
     </script>
 </body>
 </html>
