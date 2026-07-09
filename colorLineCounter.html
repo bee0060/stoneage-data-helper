@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>石器时代转宠计数器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E67E22',
+                        secondary: '#3498DB',
+                        accent: '#9B59B6',
+                        neutral: '#2C3E50',
+                        stone: '#D4A76A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-shadow {
+                @apply shadow-md hover:shadow-lg transition-all duration-300;
+            }
+            .btn-bounce {
+                @apply active:scale-95 transition-transform duration-150;
+            }
+            .text-shadow {
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            }
+            .account-item {
+                @apply bg-white rounded-lg p-3 mb-2 border-2 cursor-pointer transition-all duration-200 flex justify-between items-center;
+            }
+            .account-item-active {
+                @apply border-primary bg-primary/5;
+            }
+            .account-item-inactive {
+                @apply border-gray-200 hover:border-stone/50;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-amber-50 min-h-screen py-6 px-4">
+    <div class="max-w-md mx-auto">
+        <!-- 标题栏 -->
+        <div class="flex items-center justify-center mb-6 relative">
+            <a href="index.html" class="absolute left-0 text-neutral hover:text-primary transition-colors">
+                <i class="fa fa-arrow-left mr-1"></i> 返回
+            </a>
+            <h1 class="text-2xl font-bold text-stone flex items-center">
+                <i class="fa fa-paw text-accent mr-2 animate-pulse"></i>
+                石器转宠计数器
+            </h1>
+        </div>
+
+        <!-- 账号管理区 -->
+        <div class="bg-white rounded-xl p-4 mb-6 card-shadow border border-stone/20">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="font-semibold text-neutral flex items-center">
+                    <i class="fa fa-user-circle text-stone mr-2"></i>账号管理
+                </h2>
+                <button id="addAccountBtn" class="text-primary hover:text-accent btn-bounce">
+                    <i class="fa fa-plus-circle"></i> 添加账号
+                </button>
+            </div>
+
+            <!-- 账号添加表单 -->
+            <div id="addAccountForm" class="mb-4">
+                <div class="flex gap-2 mb-3">
+                    <input type="text" id="accountNameInput" placeholder="账号名称"
+                        style="flex-grow: 2;"
+                        class="flex-1 border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none text-sm">
+                    <input type="number" id="initialCountInput" placeholder="初始数量 (0-34)" min="0" max="34" value="0"
+                        class="flex-1 border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none text-sm">
+                </div>
+                <div class="flex gap-2">
+
+                    <button id="confirmAddBtn"
+                        class="bg-primary text-white px-3 py-2 rounded-md hover:bg-primary/90 btn-bounce text-sm">
+                        添加
+                    </button>
+                </div>
+            </div>
+
+            <!-- 账号列表容器 -->
+            <div id="accountContainer" class="max-h-[200px] overflow-y-auto pr-1">
+                <div class="text-center text-gray-400 text-sm py-8">
+                    暂无账号<br>添加第一个账号吧
+                </div>
+            </div>
+        </div>
+
+        <!-- 计数器区 -->
+        <div class="bg-white rounded-xl p-6 card-shadow border-2 border-stone/30 relative overflow-hidden">
+            <!-- 装饰元素 -->
+            <div class="absolute -top-6 -right-6 w-20 h-20 bg-accent/10 rounded-full"></div>
+            <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/10 rounded-full"></div>
+
+            <h2 class="font-semibold text-neutral mb-6 text-center flex items-center justify-center">
+                <i class="fa fa-calculator text-stone mr-2"></i>当前账号：<span id="currentAccountName"
+                    class="text-primary ml-1">未选择</span>
+            </h2>
+
+            <div class="text-center mb-8">
+                <div
+                    class="inline-flex items-center justify-center w-48 h-48 rounded-full bg-gradient-to-br from-stone/20 to-amber-100 border-4 border-stone/30 mb-3">
+                    <span id="counterDisplay" class="text-5xl font-bold text-neutral text-shadow">0</span>
+                </div>
+                <p class="text-sm text-gray-500">已转宠物数量</p>
+            </div>
+
+            <!-- 彩线提示 -->
+            <div id="colorLineTip" class="hidden mb-6 text-center">
+                <div
+                    class="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium border border-accent/30">
+                    <i class="fa fa-star mr-1 animate-pulse"></i>已达到彩线保底！
+                </div>
+            </div>
+
+            <!-- 进度条 -->
+            <div class="mb-6">
+                <div class="flex justify-between text-xs text-gray-500 mb-1">
+                    <span>0</span>
+                    <span>35（目标）</span>
+                </div>
+                <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
+                    <div id="progressBar" class="h-full bg-primary rounded-full transition-all duration-500"
+                        style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="flex gap-4">
+                <button id="incrementBtn"
+                    class="flex-1 bg-primary text-white py-3 rounded-md hover:bg-primary/90 btn-bounce disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled>
+                    <i class="fa fa-plus mr-1"></i> 增加1只
+                </button>
+                <button id="resetBtn"
+                    class="flex-1 bg-gray-200 text-neutral py-3 rounded-md hover:bg-gray-300 btn-bounce disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled>
+                    <i class="fa fa-refresh mr-1"></i> 重置
+                </button>
+            </div>
+        </div>
+
+        <!-- 底部说明 -->
+        <div class="text-center text-xs text-gray-500 bg-white/50 p-3 rounded-lg mt-6">
+            <p>每个账号转满35只宠物可触发彩线保底机制</p>
+            <p class="mt-1">数据仅保存在当前浏览器中，清除缓存会丢失</p>
+        </div>
+    </div>
+
+    <script>
+        // 全局变量
+        let accounts = JSON.parse(localStorage.getItem('stoneAgeAccounts')) || {};
+        let currentAccount = null;
+
+        // DOM元素
+        const elements = {
+            addAccountBtn: document.getElementById('addAccountBtn'),
+            confirmAddBtn: document.getElementById('confirmAddBtn'),
+            accountNameInput: document.getElementById('accountNameInput'),
+            initialCountInput: document.getElementById('initialCountInput'),
+            accountContainer: document.getElementById('accountContainer'),
+            currentAccountName: document.getElementById('currentAccountName'),
+            counterDisplay: document.getElementById('counterDisplay'),
+            incrementBtn: document.getElementById('incrementBtn'),
+            resetBtn: document.getElementById('resetBtn'),
+            progressBar: document.getElementById('progressBar'),
+            colorLineTip: document.getElementById('colorLineTip')
+        };
+
+        // 初始化
+        function init() {
+            renderAccountList();
+            bindEvents();
+        }
+
+        // 渲染账号列表 - 核心修复：使用事件委托解决按钮点击问题
+        function renderAccountList() {
+            elements.accountContainer.innerHTML = '';
+
+            if (Object.keys(accounts).length === 0) {
+                elements.accountContainer.innerHTML = `
+                    <div class="text-center text-gray-400 text-sm py-8">
+                        暂无账号<br>添加第一个账号吧
+                    </div>
+                `;
+                return;
+            }
+
+            // 创建账号列表HTML
+            let accountsHTML = '';
+            Object.keys(accounts).forEach(name => {
+                accountsHTML += `
+                    <div class="account-item ${currentAccount === name ? 'account-item-active' : 'account-item-inactive'}" data-name="${name}">
+                        <div>
+                            <span>${name}</span>
+                            <div class="text-xs text-gray-500 mt-1">已转: ${accounts[name]}只</div>
+                        </div>
+                        <div class="flex gap-1">
+                            <button class="delete-account text-gray-500 hover:text-red-500 p-1" data-name="${name}">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            elements.accountContainer.innerHTML = accountsHTML;
+        }
+
+        // 选择账号
+        function selectAccount(name) {
+            if (!accounts.hasOwnProperty(name)) return;
+
+            currentAccount = name;
+            const count = accounts[name];
+
+            // 更新UI
+            elements.currentAccountName.textContent = name;
+            elements.counterDisplay.textContent = count;
+            elements.progressBar.style.width = `${Math.min(100, (count / 35) * 100)}%`;
+
+            // 控制按钮状态
+            if (count >= 35) {
+                elements.colorLineTip.classList.remove('hidden');
+                elements.incrementBtn.disabled = true;
+            } else {
+                elements.colorLineTip.classList.add('hidden');
+                elements.incrementBtn.disabled = false;
+            }
+
+            elements.resetBtn.disabled = false;
+            renderAccountList();
+        }
+
+        // 添加账号
+        function addAccount() {
+            const name = elements.accountNameInput.value.trim();
+            const initialCount = parseInt(elements.initialCountInput.value) || 0;
+
+            if (!name) {
+                alert('请输入账号名称');
+                return;
+            }
+
+            if (accounts[name]) {
+                alert('该账号已存在');
+                return;
+            }
+
+            if (initialCount < 0 || initialCount > 34) {
+                alert('初始数量必须在0-34之间');
+                return;
+            }
+
+            accounts[name] = initialCount;
+            localStorage.setItem('stoneAgeAccounts', JSON.stringify(accounts));
+
+            // 重置表单
+            elements.accountNameInput.value = '';
+            elements.initialCountInput.value = 0;
+
+            renderAccountList();
+            selectAccount(name);
+        }
+
+        // 编辑账号 - 修复：确保修改功能正常
+        function editAccount(oldName) {
+            const newName = prompt('请输入新的账号名称', oldName);
+            if (!newName || newName.trim() === '' || newName === oldName) return;
+            if (accounts[newName]) {
+                alert('该账号名称已存在');
+                return;
+            }
+
+            // 保存计数并转移到新账号
+            const count = accounts[oldName];
+            delete accounts[oldName];
+            accounts[newName] = count;
+
+            localStorage.setItem('stoneAgeAccounts', JSON.stringify(accounts));
+
+            // 更新当前账号
+            if (currentAccount === oldName) {
+                currentAccount = newName;
+                elements.currentAccountName.textContent = newName;
+            }
+
+            renderAccountList();
+        }
+
+        // 删除账号 - 修复：确保删除功能正常
+        function deleteAccount(name) {
+            delete accounts[name];
+            localStorage.setItem('stoneAgeAccounts', JSON.stringify(accounts));
+
+            // 重置当前账号状态
+            if (currentAccount === name) {
+                currentAccount = null;
+                elements.currentAccountName.textContent = '未选择';
+                elements.counterDisplay.textContent = '0';
+                elements.progressBar.style.width = '0%';
+                elements.colorLineTip.classList.add('hidden');
+                elements.incrementBtn.disabled = true;
+                elements.resetBtn.disabled = true;
+            }
+
+            renderAccountList();
+        }
+
+        // 增加计数
+        function incrementCount() {
+            if (!currentAccount) return;
+
+            let count = accounts[currentAccount];
+            if (count >= 35) return; // 达到35后不再增加
+
+            count++;
+            accounts[currentAccount] = count;
+            localStorage.setItem('stoneAgeAccounts', JSON.stringify(accounts));
+
+            // 更新UI
+            elements.counterDisplay.textContent = count;
+            elements.progressBar.style.width = `${Math.min(100, (count / 35) * 100)}%`;
+
+            if (count >= 35) {
+                elements.colorLineTip.classList.remove('hidden');
+                elements.incrementBtn.disabled = true;
+            }
+        }
+
+        // 重置计数 - 核心修复：确保重置功能正常
+        function resetCount() {
+            if (!currentAccount) return;
+
+            // 强制重置为0
+            accounts[currentAccount] = 0;
+            localStorage.setItem('stoneAgeAccounts', JSON.stringify(accounts));
+
+            // 更新UI
+            elements.counterDisplay.textContent = '0';
+            elements.progressBar.style.width = '0%';
+            elements.colorLineTip.classList.add('hidden');
+            elements.incrementBtn.disabled = false;
+        }
+
+        // 绑定事件 - 核心修复：使用事件委托处理动态元素
+        function bindEvents() {
+            // 添加账号
+            elements.confirmAddBtn.addEventListener('click', addAccount);
+            elements.accountNameInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') addAccount();
+            });
+
+            // 计数器操作
+            elements.incrementBtn.addEventListener('click', incrementCount);
+            elements.resetBtn.addEventListener('click', resetCount);
+
+            // 初始数量限制
+            elements.initialCountInput.addEventListener('input', (e) => {
+                let value = parseInt(e.target.value) || 0;
+                e.target.value = Math.min(34, Math.max(0, value));
+            });
+
+            // 账号列表事件委托（关键修复）
+            elements.accountContainer.addEventListener('click', (e) => {
+                const accountItem = e.target.closest('.account-item');
+                const deleteBtn = e.target.closest('.delete-account');
+
+                // 处理账号选择
+                if (accountItem && !deleteBtn) {
+                    const name = accountItem.dataset.name;
+                    selectAccount(name);
+                }
+
+                // 处理删除账号
+                if (deleteBtn) {
+                    const name = deleteBtn.dataset.name;
+                    deleteAccount(name);
+                }
+            });
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+
+</html>

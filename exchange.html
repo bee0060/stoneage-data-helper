@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JPJ376C9YF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JPJ376C9YF');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>金贝换算器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E67E22',
+                        secondary: '#3498DB',
+                        neutral: '#2C3E50',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .input-focus {
+                @apply focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none;
+            }
+            .card-shadow {
+                @apply shadow-md hover:shadow-lg transition-shadow;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen py-8 px-4">
+    <div class="max-w-md mx-auto bg-white rounded-xl p-6 card-shadow relative">
+        <a href="index.html" class="absolute top-9 left-4 text-gray-600 hover:text-neutral transition-colors">
+            <i class="fa fa-arrow-left mr-1"></i> 返回
+        </a>
+
+        <div class="flex items-center justify-center mb-6 mt-2"> <!-- 增加顶部间距避开按钮 -->
+            <i class="fa fa-diamond text-primary text-2xl mr-2"></i>
+            <h1 class="text-2xl font-bold text-neutral">金贝换算器</h1>
+        </div>
+
+        <!-- 基础转换区域 -->
+        <div class="space-y-6 mb-8 pb-6 border-b border-gray-100">
+            <div>
+                <label for="goldInput" class="block text-sm font-medium text-gray-700 mb-1">
+                    金贝数量（A）
+                </label>
+                <div class="relative">
+                    <input type="number" id="goldInput" placeholder="输入金贝数量" min="0" step="1"
+                        class="w-full border border-gray-300 rounded-md px-3 py-2 input-focus"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value === '') this.value = ''">
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">贝</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="rateInput" class="block text-sm font-medium text-gray-700 mb-1">
+                    转换比例（1R = ? 金贝）
+                </label>
+                <input type="number" id="rateInput" value="150" min="1" step="1"
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 input-focus"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value === '' || this.value < 1) this.value = 1">
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">类型</label>
+                <div class="flex gap-4">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="convertType" value="cash" checked class="text-primary input-focus">
+                        <span>现金金贝（无手续费）</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="convertType" value="item" class="text-primary input-focus">
+                        <span>物品价值（含15%手续费）</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="p-4 bg-gray-50 rounded-lg">
+                <h3 class="text-sm font-medium text-gray-500 mb-2">转换结果（A）</h3>
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-gray-600 text-sm">R价值</p>
+                        <p id="rmbResultA" class="text-2xl font-bold text-neutral">0.00 R</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-gray-600 text-sm">实际金贝价值</p>
+                        <p id="actualGoldResultA" class="text-2xl font-bold text-neutral">0 贝</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 对比功能（常驻显示） -->
+        <div class="space-y-6">
+            <div class="flex items-center gap-2 mb-2">
+                <i class="fa fa-balance-scale text-secondary"></i>
+                <h2 class="text-lg font-semibold text-neutral">数量对比</h2>
+            </div>
+
+            <div>
+                <label for="goldInputB" class="block text-sm font-medium text-gray-700 mb-1">
+                    金贝数量（B）
+                </label>
+                <div class="relative">
+                    <input type="number" id="goldInputB" placeholder="输入对比的金贝数量" min="0" step="1"
+                        class="w-full border border-gray-300 rounded-md px-3 py-2 input-focus"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value === '') this.value = ''">
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">贝</span>
+                </div>
+            </div>
+
+            <div class="p-4 bg-gray-50 rounded-lg">
+                <h3 class="text-sm font-medium text-gray-500 mb-2">转换结果（B）</h3>
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-gray-600 text-sm">R价值</p>
+                        <p id="rmbResultB" class="text-2xl font-bold text-neutral">0.00 R</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-gray-600 text-sm">实际金贝价值</p>
+                        <p id="actualGoldResultB" class="text-2xl font-bold text-neutral">0 贝</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h3 class="text-sm font-medium text-gray-500 mb-3">对比差额</h3>
+                <div class="space-y-2 text-sm">
+                    <p>
+                        金贝差额（A - B）：<span id="goldDiff" class="font-semibold text-neutral">0 贝</span>
+                    </p>
+                    <p>
+                        R差额（A - B）：<span id="rmbDiff" class="font-semibold text-neutral">0.00 R</span>
+                    </p>
+                    <p>
+                        原价值（无手续费）：<span id="originalValue" class="font-semibold text-neutral">A: 0 贝，B: 0 贝</span>
+                    </p>
+                    <p>
+                        金贝实际价值：<span id="itemValue" class="font-semibold text-neutral">A: 0 贝，B: 0 贝</span>
+                    </p>
+                    <p>
+                        对应R实际价值：<span id="itemRValue" class="font-semibold text-neutral">A: 0.00 R，B: 0.00 R</span>
+                    </p>
+                    <p>
+                        风险价值：<span id="riskValue" class="font-semibold text-neutral">0.00</span>
+                        <span class="text-gray-500 ml-1">（金贝差额 ÷ A原数值）</span>
+                    </p>
+                </div>
+
+                <div class="mt-3 p-2 bg-gray-100 rounded text-sm text-gray-700">
+                    <p id="summaryText">请输入两个金贝数量查看对比结果</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 元素获取
+            const goldInputA = document.getElementById('goldInput');
+            const goldInputB = document.getElementById('goldInputB');
+            const rateInput = document.getElementById('rateInput');
+            const rmbResultA = document.getElementById('rmbResultA');
+            const rmbResultB = document.getElementById('rmbResultB');
+            const actualGoldResultA = document.getElementById('actualGoldResultA');
+            const actualGoldResultB = document.getElementById('actualGoldResultB');
+            const goldDiff = document.getElementById('goldDiff');
+            const rmbDiff = document.getElementById('rmbDiff');
+            const itemValue = document.getElementById('itemValue');
+            const itemRValue = document.getElementById('itemRValue');
+            const riskValue = document.getElementById('riskValue');
+            const originalValue = document.getElementById('originalValue');
+            const summaryText = document.getElementById('summaryText');
+            const typeRadios = document.querySelectorAll('input[name="convertType"]');
+
+            // 计算单个金贝数量的转换结果
+            function calculateSingleResult(gold, rate, isItem) {
+                const actualGold = isItem ? Math.round(gold * 0.85) : gold;
+                const rmbValue = actualGold / rate;
+                return { actualGold, rmbValue };
+            }
+
+            // 计算所有结果
+            function calculateAll() {
+                // 获取基础值（确保为整数）
+                const goldA = parseInt(goldInputA.value) || 0;
+                const goldB = parseInt(goldInputB.value) || 0;
+                const rate = parseInt(rateInput.value) || 150;
+                const isItem = document.querySelector('input[name="convertType"][value="item"]').checked;
+
+                // 计算A和B的单独结果
+                const resultA = calculateSingleResult(goldA, rate, isItem);
+                const resultB = calculateSingleResult(goldB, rate, isItem);
+
+                // 更新A的显示
+                actualGoldResultA.textContent = resultA.actualGold + ' 贝';
+                rmbResultA.textContent = resultA.rmbValue.toFixed(2) + ' R';
+
+                // 更新B的显示
+                actualGoldResultB.textContent = resultB.actualGold + ' 贝';
+                rmbResultB.textContent = resultB.rmbValue.toFixed(2) + ' R';
+
+                // 计算差额
+                const goldDiffValue = goldA - goldB;
+                const rmbDiffValue = resultA.rmbValue - resultB.rmbValue;
+
+                // 计算风险价值（金贝差额 ÷ A的原金贝数值）
+                let risk = 0;
+                if (goldA > 0) {
+                    risk = goldDiffValue / goldA;
+                }
+
+                // 更新差额显示
+                goldDiff.textContent = `${goldDiffValue} 贝`;
+                rmbDiff.textContent = `${rmbDiffValue.toFixed(2)} R`;
+
+                // 更新价值说明
+                originalValue.textContent = `A: ${goldA} 贝，B: ${goldB} 贝`;
+                itemValue.textContent = `A: ${resultA.actualGold} 贝，B: ${resultB.actualGold} 贝`;
+                itemRValue.textContent = `A: ${resultA.rmbValue.toFixed(2)} R，B: ${resultB.rmbValue.toFixed(2)} R`;
+                riskValue.textContent = risk.toFixed(4);
+
+                // 更新总结文案
+                if (goldA === 0 && goldB === 0) {
+                    summaryText.textContent = '请输入两个金贝数量查看对比结果';
+                } else {
+                    const diffDesc = goldDiffValue >= 0
+                        ? `A比B多${Math.abs(goldDiffValue)}贝（折合${Math.abs(rmbDiffValue).toFixed(2)}R）`
+                        : `B比A多${Math.abs(goldDiffValue)}贝（折合${Math.abs(rmbDiffValue).toFixed(2)}R）`;
+
+                    summaryText.textContent = `金贝差额${goldDiffValue}贝，R差额${rmbDiffValue.toFixed(2)}R。${diffDesc}${isItem ? '（已扣15%手续费）' : ''}`;
+                }
+            }
+
+            // 绑定所有输入变化事件
+            goldInputA.addEventListener('input', calculateAll);
+            goldInputB.addEventListener('input', calculateAll);
+            rateInput.addEventListener('input', calculateAll);
+            typeRadios.forEach(radio => {
+                radio.addEventListener('change', calculateAll);
+            });
+        });
+    </script>
+</body>
+
+</html>

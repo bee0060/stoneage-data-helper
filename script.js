@@ -127,7 +127,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 初始化下拉框
     initCategorySelect('searchCategory')
-    initQualitySelect('searchSubCategory')
 
     initCategorySelect('entryCategory')
     initQualitySelect('entryQuality')
@@ -149,95 +148,21 @@ document.addEventListener('DOMContentLoaded', function () {
     // DOM对象获取
     // 大品类选择联动小品类（查询区）
     const searchCategory = document.getElementById('searchCategory');
-    const searchSubCategory = document.getElementById('searchSubCategory');
     const searchAttribute = document.getElementById('searchAttribute');
     // 大品类选择联动小品类（录入区）
     const entryCategory = document.getElementById('entryCategory');
-    const entrySubCategory = document.getElementById('entrySubCategory');
     const entryAttribute = document.getElementById('entryAttribute');
     // 词条搜索建议（查询区）
-    const searchItemName = document.getElementById('searchItemName');
-    const itemSuggestions = document.getElementById('itemSuggestions');
-
-    function updateSearchSubCategories(category) {
-        searchSubCategory.innerHTML = '<option value="all">全部</option>';
-        if (subCategories[category]) {
-            subCategories[category].forEach(sub => {
-                const option = document.createElement('option');
-                option.value = sub;
-                option.textContent = sub;
-                searchSubCategory.appendChild(option);
-            });
-        }
-    }
 
     searchCategory.addEventListener('change', function () {
-        updateSearchSubCategories(this.value);
         initAttributeSelect(this.value, 'searchAttribute')
     });
-    searchAttribute.addEventListener('change', function () {
-        searchItemName.value = this.value
-        const event = new Event('input')
-        searchItemName.dispatchEvent(event)
-    });
-    updateSearchSubCategories(searchCategory.value); // 初始化
-
-    function updateEntrySubCategories(category) {
-        entrySubCategory.innerHTML = '<option value="">（可选）请选择小品类</option>';
-        if (subCategories[category]) {
-            subCategories[category].forEach(sub => {
-                const option = document.createElement('option');
-                option.value = sub;
-                option.textContent = sub;
-                entrySubCategory.appendChild(option);
-            });
-        }
-    }
 
     entryCategory.addEventListener('change', function () {
-        updateEntrySubCategories(this.value);
         initAttributeSelect(this.value, 'entryAttribute')
     });
-    entryAttribute.addEventListener('change', function () {
-        entryItemName.value = this.value
-    });
 
 
-    searchItemName.addEventListener('input', function () {
-        const value = this.value.trim().toLowerCase();
-        if (value.length < 1) {
-            itemSuggestions.classList.add('hidden');
-            return;
-        }
-
-        const allItems = getEntryItems()
-        const uniqueNames = [...new Set(allItems.map(item => item.name))];
-        const filtered = uniqueNames.filter(name => name.toLowerCase().includes(value));
-
-        itemSuggestions.innerHTML = '';
-        if (filtered.length > 0) {
-            filtered.forEach(name => {
-                const div = document.createElement('div');
-                div.className = 'px-3 py-2 hover:bg-gray-100 cursor-pointer';
-                div.textContent = name;
-                div.addEventListener('click', function () {
-                    searchItemName.value = name;
-                    itemSuggestions.classList.add('hidden');
-                });
-                itemSuggestions.appendChild(div);
-            });
-            itemSuggestions.classList.remove('hidden');
-        } else {
-            itemSuggestions.classList.add('hidden');
-        }
-    });
-
-    // 点击其他区域关闭建议框
-    document.addEventListener('click', function (e) {
-        if (!searchItemName.contains(e.target) && !itemSuggestions.contains(e.target)) {
-            itemSuggestions.classList.add('hidden');
-        }
-    });
 
     // 录入表单提交（更新逻辑：删除同词条同品质旧数据，保留最新数据）
     const entryForm = document.getElementById('entryForm');
@@ -246,8 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
     entryForm.addEventListener('submit', function (e) {
         e.preventDefault();
         const category = entryCategory.value;
-        const subCategory = entrySubCategory.value; // 允许为空
-        const name = document.getElementById('entryItemName').value.trim();
+        const name = document.getElementById('entryAttribute').value.trim();
         const inputValue = parseFloat(document.getElementById('entryValue').value);
         const quality = document.getElementById('entryQuality').value;
 
@@ -289,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 3. 创建新记录
         const newItem = {
             category,
-            subCategory: subCategory || '',
+            subCategory: '',
             name,
             quality,
             min: minVal,
@@ -388,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-        const jsonStr = `${JSON.stringify(attributes, null, 2)}\n\n${JSON.stringify(uniqueItems, null, 2)}`;
+        const jsonStr = JSON.stringify(uniqueItems, null, 2);
         navigator.clipboard.writeText(jsonStr).then(() => {
             showToast('最新数据已复制到剪贴板');
         }).catch(err => {
@@ -414,11 +338,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // 查询功能
     function performSearch() {
         const category = searchCategory.value;
-        const subCategory = searchSubCategory.value;
         const qualityFilters = Array.from(
             document.querySelectorAll('input[name="searchQuality"]:checked')
         ).map(cb => cb.value);
-        const name = searchItemName.value.trim().toLowerCase();
+        const name = searchAttribute.value.trim().toLowerCase();
 
         const items = getEntryItems()
         // 去重处理：只保留最新记录
@@ -437,8 +360,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const results = uniqueItems.filter(item => {
             // 品类筛选
             if (category !== 'all' && item.category !== category) return false;
-            // 小品类筛选（允许为空）
-            if (subCategory !== 'all' && item.subCategory !== subCategory) return false;
             // 品质筛选
             if (qualityFilters.length > 0 && !qualityFilters.includes(item.quality)) return false;
             // 名称筛选
@@ -468,8 +389,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 绑定查询触发事件
     document.getElementById('searchCategory').addEventListener('change', performSearch);
-    document.getElementById('searchSubCategory').addEventListener('change', performSearch);
-    document.getElementById('searchItemName').addEventListener('input', performSearch);
+    document.getElementById('searchAttribute').addEventListener('change', performSearch);
     document.querySelectorAll('input[name="searchQuality"]').forEach(checkbox => {
         checkbox.addEventListener('change', performSearch);
     });
